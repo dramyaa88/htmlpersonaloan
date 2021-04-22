@@ -7,6 +7,7 @@ public class First extends BusinessLogic1{
 	public static void main(String[] args) throws Exception
     {
         BusinessLogic1 obj = new BusinessLogic1();
+        BusinessLogic2 obj1 = new BusinessLogic2();
         JavaBean obj2 = new JavaBean();
         MySQLclass obj6 = new MySQLclass();
         Accept_Details ob = new Accept_Details();
@@ -20,20 +21,24 @@ public class First extends BusinessLogic1{
         if(press == 2)
        {
         
-        ob.userDetails();
+        ob.newUserDetails();
         
         
         obj.eligibility(obj2.getName(), obj2.getCity(), obj2.getPhonenumber(), obj2.getPan(), obj2.getAge(),obj2.getSal(), obj2.getExpense());
         if(OTP == 1)
         {
-             obj.endMessage();
+             obj1.endMessage();
+             
+             obj6.insertDisplay();
              
              obj6.display();
         }
         }
+        
+        
         else if(press == 1)
         {
-        	ob.userDetails1();
+        	ob.existingUserDetails();
         	
       
         	int b=obj6.validate(obj2.getUid(), obj2.getPwd());
@@ -44,6 +49,7 @@ public class First extends BusinessLogic1{
         		
         		System.out.println("press the number for the following operations to be performed \n 1. Update Information \n 2. Drop information \n 3. To obtain Loan \n 4. To Display Information");
         		int num = sc.nextInt();
+        		
         		if(num==3)
         		{
         		
@@ -52,10 +58,13 @@ public class First extends BusinessLogic1{
                 BusinessLogic2 obj8 = new BusinessLogic2();
                 obj8.loanDetails(obj2.getLoanAmount(), obj2.getTenure());
                 
-                obj.endMessage();
+                obj1.endMessage();
+                
+                obj6.insertDisplay();
                 
                 obj6.display();
         		}
+        		
         		else if(num==4)
         		{
         			obj6.display();
@@ -63,10 +72,12 @@ public class First extends BusinessLogic1{
         		else if(num ==2)
         		{
         			obj6.deleteInfo();
+        			obj6.display();
         		}
         		else
         		{
         			obj6.updateInfo();
+        			obj6.display();
         		}
         	}
         	else
