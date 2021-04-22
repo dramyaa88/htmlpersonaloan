@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class MySQLclass extends JavaBean{
+public class MySQLclass extends JavaBean implements InterMethods{
 	
 	Scanner sc = new Scanner(System.in);
 	MySQLConnection myconn=new MySQLConnection();
@@ -42,7 +42,7 @@ public class MySQLclass extends JavaBean{
 		return t;
 	}
 	
-	void updateInfo()
+	public void updateInfo()
 	{
 		System.out.println("Updating phone number");
 		conn=myconn.mySqlDBConnection();
@@ -66,7 +66,7 @@ public class MySQLclass extends JavaBean{
 		
 	}
 	
-	void deleteInfo()
+	public void deleteInfo()
 	{
 		System.out.println("Deleting your information");
 		conn=myconn.mySqlDBConnection();
@@ -83,9 +83,9 @@ public class MySQLclass extends JavaBean{
 			PreparedStatement pst = conn.prepareStatement(deleteQuery2);
 			pst.setInt(1, getUid());
 			
-			psm.executeQuery();
-			ps.executeQuery();
-			pst.executeQuery();
+			psm.execute();
+			ps.execute();
+			pst.execute();
 			
 			
 			
@@ -95,7 +95,7 @@ public class MySQLclass extends JavaBean{
 		}
 	}
 
-	void display()
+	public void insertDisplay()
 	{
 		System.out.println("Displaying your information");
 		conn=myconn.mySqlDBConnection();
@@ -104,18 +104,143 @@ public class MySQLclass extends JavaBean{
 		String addQuery1 = "insert into personalDetails values(?,?,?,?,?,?)";
 		String addQuery2 = "insert into loanDetails values(?,?,?,?,?)";
 		
-		String displayQuery = "select * from login where uid=?";
-		String displayQuery1 = "select * from personalDetails where uid=?";
-		String displayQuery2 = "select * from loanDetails where uid=?";
+//		String displayQuery = "select * from login where uid=?";
+//		String displayQuery1 = "select * from personalDetails where uid=?";
+//		String displayQuery2 = "select * from loanDetails where uid=?";
+		
 		try
-		{
-
-			
+		{	
 		PreparedStatement psmt1 = conn.prepareStatement(addQuery);
 		psmt1.setInt(1,getUid());
 		psmt1.setString(2, getPwd());
 		psmt1.executeUpdate();
 		
+//		PreparedStatement psmt3 = conn.prepareStatement(displayQuery);
+//		psmt3.setInt(1, getUid());
+//		psmt3.execute();
+
+//		ResultSet rs = psmt3.executeQuery();
+//
+//		while(rs.next())
+//		{
+//			System.out.print("UID :"+rs.getString(1)+" , ");
+//			System.out.print("Password :"+rs.getString(2));
+//			System.out.println();
+////		
+//		}
+//		
+//		while(rs.next())
+//		{
+//			System.out.println();
+//		}
+		
+
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}
+
+		try
+		{
+			PreparedStatement psmt2 = conn.prepareStatement(addQuery1);
+			psmt2.setInt(1,getUid());
+			psmt2.setString(2, getPhonenumber());
+			psmt2.setString(3,getName());
+			psmt2.setInt(4, getAge());
+			psmt2.setString(5, getCity());	
+			psmt2.setString(6,getPan());
+			psmt2.executeUpdate();
+			
+//			PreparedStatement psmt5 = conn.prepareStatement(displayQuery1);
+//			psmt5.setInt(1, getUid());
+//			psmt5.execute();
+//			
+//			ResultSet rs1 = psmt5.executeQuery();
+//			
+//			while(rs1.next())
+//			{
+//				System.out.print("UserId :"+rs1.getString(1)+" , ");
+//				System.out.print("PhoneNumber :"+rs1.getString(2)+" , ");
+//				System.out.print("Name :"+rs1.getString(3)+" , ");
+//				System.out.print("Age :"+rs1.getInt(4)+" , ");
+//				System.out.print("City :"+rs1.getString(5)+" , ");
+//				System.out.print("Pan :"+rs1.getString(6));
+//				System.out.println();
+//			}
+//			
+//			while(rs1.next())
+//			{
+//				System.out.println();
+//			}
+//			
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}
+		
+		try
+		{
+			PreparedStatement psmt4 = conn.prepareStatement(addQuery2);
+			psmt4.setInt(1,getUid());
+			psmt4.setInt(2,getSal());
+			psmt4.setInt(3,getExpense());
+			psmt4.setInt(4,getLoanAmount());
+			psmt4.setInt(5,getTenure());
+			psmt4.executeUpdate();
+			
+//			PreparedStatement psmt6 = conn.prepareStatement(displayQuery2);
+//			psmt6.setInt(1, getUid());
+//			psmt6.execute();
+//			
+//			ResultSet rs2 = psmt6.executeQuery();
+//			
+//			while(rs2.next())
+//			{
+//				System.out.print("UID :"+rs2.getString(1)+" , ");
+//				System.out.print("Income :"+rs2.getInt(2)+" , ");
+//				System.out.print("Expense :"+rs2.getInt(3)+" , ");
+//				System.out.print("LoanAmount :"+rs2.getInt(4)+" , ");
+//				System.out.print("Tenure in  months :"+rs2.getInt(5));
+//				System.out.println();
+//			}
+//			
+//			while(rs2.next())
+//			{
+//				System.out.println();
+//			}
+			
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}finally
+		{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void display()
+	{
+		System.out.println("Displaying your information");
+		String displayQuery = "select * from login where uid=?";
+		String displayQuery1 = "select * from personalDetails where uid=?";
+		String displayQuery2 = "select * from loanDetails where uid=?";
+		try
+		{
 		PreparedStatement psmt3 = conn.prepareStatement(displayQuery);
 		psmt3.setInt(1, getUid());
 		psmt3.execute();
@@ -143,97 +268,129 @@ public class MySQLclass extends JavaBean{
 		{
 			ee.printStackTrace();
 		}
-
-		try
-		{
-			PreparedStatement psmt2 = conn.prepareStatement(addQuery1);
-			psmt2.setInt(1,getUid());
-			psmt2.setString(2, getPhonenumber());
-			psmt2.setString(3,getName());
-			psmt2.setInt(4, getAge());
-			psmt2.setString(5, getCity());	
-			psmt2.setString(6,getPan());
-			psmt2.executeUpdate();
-			
-			PreparedStatement psmt5 = conn.prepareStatement(displayQuery1);
-			psmt5.setInt(1, getUid());
-			psmt5.execute();
-			
-			ResultSet rs1 = psmt5.executeQuery();
-			
-			while(rs1.next())
-			{
-				System.out.print("UserId :"+rs1.getString(1)+" , ");
-				System.out.print("PhoneNumber :"+rs1.getString(2)+" , ");
-				System.out.print("Name :"+rs1.getString(3)+" , ");
-				System.out.print("Age :"+rs1.getInt(4)+" , ");
-				System.out.print("City :"+rs1.getString(5)+" , ");
-				System.out.print("Pan :"+rs1.getString(6));
-				System.out.println();
-			}
-			
-			while(rs1.next())
-			{
-				System.out.println();
-			}
-			
-		}catch(SQLException e)
-		{
-			e.printStackTrace();
-		}catch(Exception ee)
-		{
-			ee.printStackTrace();
-		}
+		
 		
 		try
 		{
-			PreparedStatement psmt4 = conn.prepareStatement(addQuery2);
-			psmt4.setInt(1,getUid());
-			psmt4.setInt(2,getSal());
-			psmt4.setInt(3,getExpense());
-			psmt4.setInt(4,getLoanAmount());
-			psmt4.setInt(5,getTenure());
-			psmt4.executeUpdate();
-			
-			PreparedStatement psmt6 = conn.prepareStatement(displayQuery2);
-			psmt6.setInt(1, getUid());
-			psmt6.execute();
-			
-			ResultSet rs2 = psmt6.executeQuery();
-			
-			while(rs2.next())
-			{
-				System.out.print("UID :"+rs2.getString(1)+" , ");
-				System.out.print("Income :"+rs2.getInt(2)+" , ");
-				System.out.print("Expense :"+rs2.getInt(3)+" , ");
-				System.out.print("LoanAmount :"+rs2.getInt(4)+" , ");
-				System.out.print("Tenure in  months :"+rs2.getInt(5));
-				System.out.println();
-			}
-			
-			while(rs2.next())
-			{
-				System.out.println();
-			}
-			
-		}catch(SQLException e)
+		PreparedStatement psmt5 = conn.prepareStatement(displayQuery1);
+		psmt5.setInt(1, getUid());
+		psmt5.execute();
+		
+		ResultSet rs1 = psmt5.executeQuery();
+		
+		while(rs1.next())
 		{
+			System.out.print("UserId :"+rs1.getString(1)+" , ");
+			System.out.print("PhoneNumber :"+rs1.getString(2)+" , ");
+			System.out.print("Name :"+rs1.getString(3)+" , ");
+			System.out.print("Age :"+rs1.getInt(4)+" , ");
+			System.out.print("City :"+rs1.getString(5)+" , ");
+			System.out.print("Pan :"+rs1.getString(6));
+			System.out.println();
+		}
+		
+		while(rs1.next())
+		{
+			System.out.println();
+		}
+		
+	}catch(SQLException e)
+	{
+		e.printStackTrace();
+	}catch(Exception ee)
+	{
+		ee.printStackTrace();
+	}
+		
+		try
+		{
+		
+		PreparedStatement psmt6 = conn.prepareStatement(displayQuery2);
+		psmt6.setInt(1, getUid());
+		psmt6.execute();
+		
+		ResultSet rs2 = psmt6.executeQuery();
+		
+		while(rs2.next())
+		{
+			System.out.print("UID :"+rs2.getString(1)+" , ");
+			System.out.print("Income :"+rs2.getInt(2)+" , ");
+			System.out.print("Expense :"+rs2.getInt(3)+" , ");
+			System.out.print("LoanAmount :"+rs2.getInt(4)+" , ");
+			System.out.print("Tenure in  months :"+rs2.getInt(5));
+			System.out.println();
+		}
+		
+		while(rs2.next())
+		{
+			System.out.println();
+		}
+		
+	}catch(SQLException e)
+	{
+		e.printStackTrace();
+	}catch(Exception ee)
+	{
+		ee.printStackTrace();
+	}finally
+	{
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}catch(Exception ee)
-		{
-			ee.printStackTrace();
-		}finally
-		{
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
-	
+		
+		
+	}
 
-	
+	@Override
+	public void welcomePage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eligibility(String name, String city, String phNumber, String pan, int age, int sal, int expense) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void loanDetails(int loanAmount, int tenure) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void endMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void newUserDetails() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void existingUserDetails() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void loanChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void validate() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
