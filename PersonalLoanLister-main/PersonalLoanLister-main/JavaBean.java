@@ -6,7 +6,7 @@ public class JavaBean {
     private static String pan;
     private static int sal;
     private static int ex;
-    private static  int expense;
+    private static int expense;
     private static int age;
     private static int uid;
     private static String pwd;
