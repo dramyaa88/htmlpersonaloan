@@ -21,8 +21,8 @@ public class First extends BusinessLogic1{
        {
         
         ob.userDetails();
-        String c=obj2.getCity();
-        System.out.println(c);
+        
+        
         obj.eligibility(obj2.getName(), obj2.getCity(), obj2.getPhonenumber(), obj2.getPan(), obj2.getAge(),obj2.getSal(), obj2.getExpense());
         if(OTP == 1)
         {
@@ -34,14 +34,15 @@ public class First extends BusinessLogic1{
         else if(press == 1)
         {
         	ob.userDetails1();
-            
+        	
+      
         	int b=obj6.validate(obj2.getUid(), obj2.getPwd());
         	
         	if(b==1)
         	{
         		System.out.println("Login successful");
         		
-        		System.out.println("press the num for the following operations to be performed \n 1. Update Information \n 2. Drop information \n 3. To obtain Loan \n 4. To Display Information");
+        		System.out.println("press the number for the following operations to be performed \n 1. Update Information \n 2. Drop information \n 3. To obtain Loan \n 4. To Display Information");
         		int num = sc.nextInt();
         		if(num==3)
         		{
@@ -62,13 +63,15 @@ public class First extends BusinessLogic1{
         		else if(num ==2)
         		{
         			obj6.deleteInfo();
-        			obj6.display();
         		}
         		else
         		{
         			obj6.updateInfo();
-        			obj6.display();
         		}
+        	}
+        	else
+        	{
+        		System.out.println("Invalid userId or password");
         	}
         }
         else
