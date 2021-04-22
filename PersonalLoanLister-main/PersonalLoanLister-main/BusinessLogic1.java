@@ -117,6 +117,70 @@ User_Validation uv = new User_Validation();
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+	@Override
+	public void newUserDetails() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void existingUserDetails() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void loanChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void deleteInfo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void validate() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void updateInfo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void insertDisplay() {
+		// TODO Auto-generated method stub
+		
+	}
     
 
 	
