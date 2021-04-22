@@ -8,46 +8,38 @@ import java.util.Scanner;
 
 public class MySQLclass extends JavaBean{
 	
-	static Scanner sc = new Scanner(System.in);
-	static MySQLConnection myconn=new MySQLConnection();
-	static Connection conn;
-	static JavaBean obj2 = new JavaBean();
+	Scanner sc = new Scanner(System.in);
+	MySQLConnection myconn=new MySQLConnection();
+	Connection conn;
+	JavaBean obj2 = new JavaBean();
 	
-	int validate(int i,String pwd1)
-	{
+	 public int validate(int uid1,String pwd1)
+	  {
+		 int t=0;
 		conn=myconn.mySqlDBConnection();
 		ResultSet rsp;
 		
 		
 		try {
 			
-
-			Statement p=conn.createStatement();
-			//p.setString(1,uid1);
+            String sql = "select count(uid) from login where uid=? and pwd like ?";
+			PreparedStatement p=conn.prepareStatement(sql);
+			p.setInt(1,uid1);
 		//	PreparedStatement p2=conn.prepareStatement(sqlQuery1);
-			//p.setString(2, pwd1);
+			p.setString(2, pwd1);
 			
-			 rsp=p.executeQuery("select uid,pwd from login where uid="+i);
+			 rsp=p.executeQuery();
 			//ResultSet rsp2=p2.executeQuery();
 			//String t ,t1;
 			while(rsp.next()) {
 				
-				 int t = rsp.getInt(1);
-				
-				String t1 = rsp.getString(2);
-				
-					
-			
-			if(t==i && t1==pwd1) {
-				return 1;
+				 t = rsp.getInt(1);				
 			}
-			}
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return t;
 	}
 	
 	void updateInfo()
