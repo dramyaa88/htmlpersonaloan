@@ -5,7 +5,6 @@ public class JavaBean {
     private static String Phonenumber;
     private static String pan;
     private static int sal;
-    private static int ex;
     private static int expense;
     private static int age;
     private static int uid;
@@ -71,14 +70,13 @@ public class JavaBean {
         this.city = city;
     }
 
-    public JavaBean(String name, String city, String pan, int sal, int ex, int expense, int age, int uid,
+    public JavaBean(String name, String city, String pan, int sal,int expense, int age, int uid,
 			String pwd) {
 		super();
 		this.name = name;
 		this.city = city;
 		this.pan = pan;
 		this.sal = sal;
-		this.ex = ex;
 		this.expense = expense;
 		this.age = age;
 		this.uid = uid;
@@ -115,14 +113,6 @@ public class JavaBean {
 
     public void setSal(int sal) {
         this.sal = sal;
-    }
-
-    public int getEx() {
-        return ex;
-    }
-
-    public void setEx(int ex) {
-        this.ex = ex;
     }
 
     public int getExpense() {
