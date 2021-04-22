@@ -65,14 +65,15 @@ public class Accept_Details {
     obj2.setExpense(expense);
 	}
 	
-	void userDetails1()
+	public void userDetails1()
 	{
 		System.out.println("Enter your UserId");
     	int uid1 = sc.nextInt();
     	obj2.setUid(uid1);
     	
     	System.out.println("Enter your Password");
-        String pwd1 = sc.nextLine();
+        String pwd1 = sc.next();
+        sc.nextLine();
         obj2.setPwd(pwd1);
 	}
 	
