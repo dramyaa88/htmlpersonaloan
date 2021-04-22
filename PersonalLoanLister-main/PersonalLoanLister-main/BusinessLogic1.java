@@ -30,6 +30,7 @@ User_Validation uv = new User_Validation();
 
     @Override
     public void eligibility(String name, String city, String phNumber, String pan, int age, int sal, int expense) {
+    	
     	if(press == 1 || press == 2)
     	{
 //    		
