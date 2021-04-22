@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class Accept_Details {
+public class Accept_Details extends BusinessLogic2 implements InterMethods{
 	
 	 Scanner sc = new Scanner(System.in);
 	 JavaBean obj2 = new JavaBean();
 	 
-	 void userDetails()
+	 public void newUserDetails()
 	{
 	
 	
@@ -65,7 +65,7 @@ public class Accept_Details {
     obj2.setExpense(expense);
 	}
 	
-	public void userDetails1()
+	public void existingUserDetails()
 	{
 		System.out.println("Enter your UserId");
     	int uid1 = sc.nextInt();
@@ -77,7 +77,7 @@ public class Accept_Details {
         obj2.setPwd(pwd1);
 	}
 	
-	void loanChange()
+	public void loanChange()
 	{
 		System.out.println("Enter your loan Amount");
         int loanAmount = sc.nextInt();
